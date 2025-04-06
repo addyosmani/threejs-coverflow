@@ -2,6 +2,8 @@
 
 This project demonstrates a Cover Flow effect implemented using Three.js. It displays album covers fetched from a local `albums.json` file in a 3D carousel interface.
 
+![](https://res.cloudinary.com/ddxwdqwkr/image/upload/v1743970602/addy/Screenshot_2025-04-06_at_1.16.33_PM.webp)
+
 ## Features
 
 - Displays album covers in a 3D Cover Flow style.
