@@ -57,9 +57,67 @@ window.addEventListener(
   { passive: false }
 );
 
+// --- Drag/Swipe Functionality ---
+let isDragging = false;
+let startX = 0;
+let currentScrollLeft = 0; // Using this to simulate scroll position based on drag
+
+// Add event listeners for mouse dragging
+renderer.domElement.addEventListener('mousedown', onPointerDown);
+renderer.domElement.addEventListener('mousemove', onPointerMove);
+window.addEventListener('mouseup', onPointerUp); // Listen on window to catch mouseup outside the canvas
+
+// Add event listeners for touch dragging
+renderer.domElement.addEventListener('touchstart', onPointerDown, { passive: true }); // Use passive: true where possible
+renderer.domElement.addEventListener('touchmove', onPointerMove, { passive: false }); // Need passive: false to preventDefault scroll
+renderer.domElement.addEventListener('touchend', onPointerUp);
+renderer.domElement.addEventListener('touchcancel', onPointerUp); // Handle cancellations
+
+function onPointerDown(event) {
+  isDragging = true;
+  // Use clientX for mouse, touches[0].clientX for touch
+  startX = event.clientX ?? event.touches[0].clientX;
+  // Store the slider's current value at the start of the drag
+  currentScrollLeft = elementInput.valueAsNumber;
+  renderer.domElement.style.cursor = 'grabbing'; // Change cursor
+  // Prevent text selection during drag
+  event.preventDefault();
+}
+
+function onPointerMove(event) {
+  if (!isDragging) return;
+
+  // Prevent default scrolling behavior during horizontal drag
+  event.preventDefault();
+
+  const currentX = event.clientX ?? event.touches[0].clientX;
+  const deltaX = currentX - startX;
+
+  // Adjust sensitivity: How much drag affects the slider value.
+  // Smaller number = more sensitive drag.
+  const sensitivity = window.innerWidth * 2; // Adjust this factor as needed
+  const scrollAmount = deltaX / sensitivity;
+
+  // Update slider value based on drag, clamping between 0 and 1
+  elementInput.valueAsNumber = Math.max(0, Math.min(1, currentScrollLeft - scrollAmount));
+
+  // Trigger the slider change handler to update the cover flow
+  onSliderChange();
+}
+
+function onPointerUp() {
+  if (!isDragging) return;
+  isDragging = false;
+  renderer.domElement.style.cursor = 'grab'; // Restore cursor
+}
+
+// Initial cursor style
+renderer.domElement.style.cursor = 'grab';
+
+
 /**
  * Cover Flow Example (Three.js version)
- * @author IKEDA Yasunobu (Updated by Cline)
+ * @author IKEDA Yasunobu (Updated by Cline & Addy Osmani)
  */
 async function init() {
   // Light
