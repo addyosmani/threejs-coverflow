@@ -1,0 +1,83 @@
+html {
+  height: 100%;
+}
+
+body {
+  background: black;
+  overflow: hidden;
+  margin: 0;
+  font-family: sans-serif;
+  color: white;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+#rangeSlider {
+  width: 80%;
+}
+
+#rangeSliderContainer {
+  position: absolute;
+  z-index: 2;
+  bottom: 48px;
+  width: 100%;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  #rangeSliderContainer {
+    bottom: 24px;
+  }
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  border-radius: 10px;
+}
+
+input[type="range"]::-webkit-slider-container {
+  background: #000;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 30%;
+  height: 12px;
+  background: #000;
+  border-radius: 10px;
+  border: 1px #777 solid;
+}
+
+/* タッチの場合は2倍 */
+.touch input[type="range"]::-webkit-slider-runnable-track {
+  height: 32px;
+  border-radius: 32px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 10px;
+  width: 30%;
+  border-radius: 10px;
+  border: 1px #000 solid;
+  background: #777;
+}
+
+.touch input[type="range"]::-webkit-slider-thumb {
+  height: 30px;
+  border-radius: 30px;
+}
+
+input[type="range"]:focus {
+  outline: rgba(255, 255, 255, 0.2) solid 2px;
+}
+
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #222;
+}
+
+canvas {
+  background: #000000;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Three.js Coverflow Example</title>
+    <meta name="description" content="A simple coverflow example using Three.js and GSAP." />
+    <meta name="keywords" content="Three.js, GSAP, coverflow, 3D, JavaScript" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Load Libraries -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.151.3/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.151.3/examples/jsm/"
+        }
+      }
+    </script>
+    <!-- Also load GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script type="module" src="main.js"></script>
+    <!-- Adjust CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container"></div>
+    <div id="rangeSliderContainer">
+      <input type="range" id="rangeSlider" min="0" max="1" step="0.01" />
+    </div>
+  </body>
+</html>
